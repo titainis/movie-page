@@ -9,7 +9,7 @@ const FavoritesPage = () => {
     const [favorites, setFavorites] = useState<Media[]>([])
     const [filterType, setFilterType] = useState<string>("")
 
-    useEffect(() => {
+  useEffect(() => {
       const savedFavorites: Media[] = JSON.parse(localStorage.getItem("favorites") || "[]");
       setFavorites(savedFavorites);
   }, []);
@@ -21,8 +21,7 @@ const FavoritesPage = () => {
   };
 
   const filteredFavorites = filterType ? 
-    favorites.filter(media => media.media_type === filterType) : 
-    favorites;
+    favorites.filter(media => media.media_type === filterType) : favorites;
 
      return (
     <>

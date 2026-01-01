@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import { Media } from "../../types/Media";
-import { getPageNumbers } from "../../Utils/getPages";
-
-interface PaginationProps {
-    fetchFunction: (page: number) => Promise<{ results: Media[], total_pages: number }>;
-    renderItem: (item: Media) => React.ReactNode;
-}
+import { getPages } from "../../Utils/getPages";
+import { PaginationProps } from "../../types/PaginationProps";
 
 const Pagination = ({ 
     fetchFunction, 
@@ -60,7 +56,7 @@ const Pagination = ({
                     Previous
                 </button>
                 
-                {getPageNumbers(page, totalPages).map((pageNum, index) => (
+                {getPages(page, totalPages).map((pageNum, index) => (
                     pageNum === '...' ? (
                         <span key={`ellipsis-${index}`} className="px-2">...</span>
                     ) : (

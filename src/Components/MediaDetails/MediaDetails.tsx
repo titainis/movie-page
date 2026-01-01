@@ -7,12 +7,7 @@ import { Media } from "../../types/Media";
 import { MediaProps } from "../../types/MediaProps";
 import { getReleaseYear, getRuntime, getTitle } from '../../Utils/mediaInformation';
 
-const MovieDetails = (
-  { 
-    mediaType 
-  }: 
-  MediaProps
-) => {
+const MovieDetails = ({ mediaType }: MediaProps) => {
     const apiKey = import.meta.env.VITE_API_KEY;
     const { id } = useParams();
 
@@ -58,29 +53,30 @@ const MovieDetails = (
       descriptionRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-  const toggleFavorite = () => {
-  if (!mediaDetails) return;
-  const favorites: Media[] = JSON.parse(localStorage.getItem("favorites") || "[]");
-  console.log(favorites)
+    const toggleFavorite = () => {
+        if (!mediaDetails) return;
+        const favorites: Media[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+        console.log(favorites)
 
-  if (isFavorite) {
-    const updated = favorites.filter(fav => fav.id !== mediaDetails.id);
-    localStorage.setItem("favorites", JSON.stringify(updated));
-    setIsFavorite(false);
-  } else {
-      
-      const mediaWithType = { ...mediaDetails, media_type: mediaType };
-      favorites.push(mediaWithType);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
+        if (isFavorite) {
+            const updated = favorites.filter(fav => fav.id !== mediaDetails.id);
+            localStorage.setItem("favorites", JSON.stringify(updated));
+            setIsFavorite(false);
+        } else {
+            
+            const mediaWithType = { ...mediaDetails, media_type: mediaType };
+            favorites.push(mediaWithType);
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+            setIsFavorite(true);
+            }
 
-  setNotification(isFavorite ? "Removed From Favorites" : "Added To Favorites");
+        setNotification(isFavorite ? "Removed From Favorites" : "Added To Favorites");
 
-  setTimeout(() => {
-    setNotification(null);
-  }, 3000);
-};
+        setTimeout(() => {
+            setNotification(null);
+        }, 3000);
+    };
+    
     return (
         <div className="movie-details-container pb-5">
             {mediaDetails && (

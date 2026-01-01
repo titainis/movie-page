@@ -1,4 +1,4 @@
-export const getPageNumbers = (page: number, allPages: number) => {
+export const getPages = (page: number, allPages: number) => {
     const pages: (number | string)[] = [];
 
     pages.push(1);
