@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react(),
   ],
-  base: "/project-repo/",
+  base: "/movie-page/",
   css: {
   preprocessorOptions: {
     scss: {
