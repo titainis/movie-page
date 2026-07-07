@@ -1,6 +1,4 @@
-import { formatRuntime } from "./runtime";
-
-export const getTitle = (title: string) => title || '';
+import { formatRuntime } from "./Runtime";
 
 export const getReleaseYear = (date: string) => {
       return date ? date.slice(0, 4) : '';

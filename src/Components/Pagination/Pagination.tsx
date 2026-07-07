@@ -47,7 +47,7 @@ const Pagination = ({
                 ))}
             </div>
 
-            <div className="d-flex justify-content-center align-items-center gap-2 mb-5">
+            <div className="d-flex flex-wrap justify-content-center align-items-center gap-2 mb-5">
                 <button 
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}

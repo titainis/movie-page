@@ -31,7 +31,7 @@ const FavoritesPage = () => {
 
         <div className="filter d-flex justify-content-center pb-4">
           <select className="filter-select" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-            <option value="" selected >All Types</option>
+            <option value="">All Types</option>
             <option value="movie">Movies</option>
             <option value="tv">TV Series</option>
           </select>
@@ -49,7 +49,7 @@ const FavoritesPage = () => {
           </div> ) :
             (<div className="row">
               {filteredFavorites.map((media) => (
-              <div key={media.id} className="col-md-3 mb-4">
+              <div key={media.id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                 <div className="card favorites-page__card h-100">
                   <img
                       src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
@@ -62,7 +62,7 @@ const FavoritesPage = () => {
                       <p className="card-type d-flex ">{media.media_type.toUpperCase()}</p>
                       </div>
                       
-                      <p className="card-text">{media.release_date?.slice(0, 4) || media.first_air_date.slice(0, 4)}</p>
+                      <p className="card-text">{media.release_date?.slice(0, 4) || media.first_air_date?.slice(0, 4)}</p>
 
                       <div className="card-buttons d-flex flex-column mt-auto"> 
                         <Link to={media.media_type === 'movie' ? `/movies/${media.id}` : `/tv-series/${media.id}`}>

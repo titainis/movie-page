@@ -6,6 +6,7 @@
     border: none;
 
     &__input{
+        width: min(220px, 45vw);
         padding-left: 10px;
         background-color: transparent;
         border-radius: 10px;
@@ -32,7 +33,7 @@
 .search-results {
   position: absolute;
   min-width: 100%;
-  max-width: 20vw;
+  max-width: min(400px, 90vw);
   border-radius: 0 0 8px 8px;
   padding: 10px 0;
   border-top-left-radius: 10px;

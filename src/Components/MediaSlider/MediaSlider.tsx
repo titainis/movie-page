@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import './MediaSlider.scss';
 import { Media } from "../../types/Media";
 import { MediaProps } from "../../types/MediaProps";
+import { tmdb } from "../../Utils/tmdb";
 
 
 const MediaSlider = ({ mediaType }: MediaProps) => {
-  const apiKey = import.meta.env.VITE_API_KEY;
   const STOP_DURATION = 10000000;
   const START_DURATION = 60;
 
@@ -17,13 +17,12 @@ const MediaSlider = ({ mediaType }: MediaProps) => {
   const [finish, setFinish] = useState(false);
   const [rerender, setRerender] = useState(false);
 
-  let [ref, { width }] = useMeasure();
+  const [ref, { width }] = useMeasure();
   const xTranslation = useMotionValue(0);
     
   const fetchMedia = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/${mediaType}/day?api_key=${apiKey}`);
-    const data = await response.json();
-    setMediaItems(data.results);
+    const data = await tmdb(`trending/${mediaType}/day`);
+    setMediaItems(data.results || []);
   };
 
   useEffect(() => {

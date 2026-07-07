@@ -7,10 +7,13 @@
     position: absolute;
     height: 100vh;
     width: 100%;
+    object-fit: cover;
   }
 
   &__buttons {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
   }
 
@@ -19,13 +22,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     color: colors.$white;
     background-color: rgb(0, 0, 0, 0.85);
-    border-radius: 70px;
-    padding: 30px 60px 30px 60px;
-    
+    border-radius: clamp(30px, 5vw, 70px);
+    padding: 30px clamp(15px, 5vw, 60px);
+    margin: 0 15px;
+
     h1 {
-        font-size: 50px;
+        font-size: clamp(26px, 5vw, 50px);
         margin-bottom: 10px;
     }
 

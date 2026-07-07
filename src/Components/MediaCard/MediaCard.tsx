@@ -1,27 +1,19 @@
 import './MediaCard.scss';
 import { Media } from '../../types/Media';
+import { titleCrop } from '../../Utils/titleCrop';
 
-interface MediaCardProps {
-  media: Media;
-}
-
-const MediaCard = ({ media }: MediaCardProps) => {
+const MediaCard = ({ media }: { media: Media }) => {
     return (
-        <>
-          <a href="" className='media-card'>
-            <div className="media-card__cover">
+        <div className='media-card'>
+          <div className="media-card__cover">
             <img src={`https://image.tmdb.org/t/p/w500/${media.poster_path}`}
-            alt={media.title || media.name}
+              alt={media.title || media.name}
             />
-            </div>
-            <div className='media-card__title'>
-                {(media.title || media.name).length >= 20
-                  ? (media.title || media.name).slice(0, 20) + "..."
-                  : (media.title || media.name)
-                }
-            </div>
-          </a>
-        </>
+          </div>
+          <div className='media-card__title'>
+            {titleCrop(media.title || media.name, 20)}
+          </div>
+        </div>
     );
 }
 

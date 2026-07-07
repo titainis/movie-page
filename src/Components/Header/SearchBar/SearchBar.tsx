@@ -3,19 +3,17 @@ import './SearchBar.scss';
 import SearchIcon from '../../../assets/SearchIcon/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg';
 import { useEffect, useState } from "react";
 import { Search } from "../../../types/Search";
-import { useNavigate } from "react-router";
-import { titleCrop } from "../../../Utils/TitleCrop";
+import { useNavigate } from "react-router-dom";
+import { titleCrop } from "../../../Utils/titleCrop";
+import { tmdb } from "../../../Utils/tmdb";
 
 const SearchBar = ({ isVisible}: {isVisible: boolean}) => {
-  const apiKey = import.meta.env.VITE_API_KEY;
-
   const [searchResults, setSearchResults] = useState<Search[]>([]);
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
   const SearchAPI = async (q: string) => {
-    const response = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${q}`);
-    const data = await response.json();
+    const data = await tmdb(`search/multi?query=${encodeURIComponent(q)}`);
     setSearchResults(data.results || []);
   }
 

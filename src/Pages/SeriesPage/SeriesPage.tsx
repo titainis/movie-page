@@ -1,7 +1,7 @@
 import Header from "../../Components/Header/Header";
 import Button from "../../Components/Button/Button";
-import { Link } from "react-router";
-import LatestSeries from "../../Components/LatestMedia/LatestSeries/LatestSeries";
+import { Link } from "react-router-dom";
+import LatestMedia from "../../Components/LatestMedia/LatestMedia";
 import MediaSlider from "../../Components/MediaSlider/MediaSlider";
 
 const SeriesPage = () => {
@@ -20,7 +20,7 @@ const SeriesPage = () => {
             <section className="movies-page__latest-movies pt-4">
               <h1 className="movies-page__latest d-flex justify-content-center">Latest TV Series</h1>
                 <div className="movies-page__latest-movie-card d-flex flex-wrap p-5 gap-5 justify-content-center">
-                    <LatestSeries />
+                    <LatestMedia mediaType="tv" />
                 </div>
             </section>
 

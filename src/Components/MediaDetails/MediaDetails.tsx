@@ -1,21 +1,19 @@
-import { Link, useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import './MediaDetails.scss';
 import Button from "../Button/Button";
 import BackArrow from '../../assets/white-arrow.png';
 import { Media } from "../../types/Media";
 import { MediaProps } from "../../types/MediaProps";
-import { getReleaseYear, getRuntime, getTitle } from '../../Utils/mediaInformation';
+import { Video } from "../../types/Video";
+import { getReleaseYear, getRuntime } from '../../Utils/mediaInformation';
+import { tmdb } from "../../Utils/tmdb";
 
 const MovieDetails = ({ mediaType }: MediaProps) => {
-    const apiKey = import.meta.env.VITE_API_KEY;
     const { id } = useParams();
 
-    const VIDEO_API = `https://api.themoviedb.org/3/${mediaType}/${id}/videos?api_key=${apiKey}`;
-    const DETAILS_API = `https://api.themoviedb.org/3/${mediaType}/${id}?api_key=${apiKey}`;
-
     const [mediaDetails, setMediaDetails] = useState<Media| null>(null);
-    const [mediaVideo, setMediaVideo] = useState<Media[]>([]);
+    const [mediaVideo, setMediaVideo] = useState<Video[]>([]);
     const [isFavorite, setIsFavorite] = useState(false);
     const [notification, setNotification] = useState<string | null>(null);
     const navigate = useNavigate();
@@ -23,14 +21,11 @@ const MovieDetails = ({ mediaType }: MediaProps) => {
     const descriptionRef = useRef<HTMLElement | null>(null);
 
     const fetchMoviesDetails = async () => {
-        const response = await fetch(DETAILS_API);
-        const data = await response.json();
-        setMediaDetails(data);
+        setMediaDetails(await tmdb(`${mediaType}/${id}`));
     };
 
     const fetchMoviesVideo = async () => {
-        const response = await fetch(VIDEO_API);
-        const data = await response.json();
+        const data = await tmdb(`${mediaType}/${id}/videos`);
         setMediaVideo(data.results || []);
     }
 
@@ -56,7 +51,6 @@ const MovieDetails = ({ mediaType }: MediaProps) => {
     const toggleFavorite = () => {
         if (!mediaDetails) return;
         const favorites: Media[] = JSON.parse(localStorage.getItem("favorites") || "[]");
-        console.log(favorites)
 
         if (isFavorite) {
             const updated = favorites.filter(fav => fav.id !== mediaDetails.id);
@@ -98,10 +92,10 @@ const MovieDetails = ({ mediaType }: MediaProps) => {
                     </Button>
               
                     <div className="movie-details__card">
-                        <h2 className="movie-details__card-title">{getTitle(mediaDetails.name || mediaDetails.title)}</h2>
+                        <h2 className="movie-details__card-title">{mediaDetails.name || mediaDetails.title}</h2>
                         <p>{getReleaseYear(mediaDetails.first_air_date || mediaDetails.release_date)}</p>
                         <p>{getRuntime(mediaType, mediaDetails)}</p>
-                        <img src={`https://image.tmdb.org/t/p/w500/${mediaDetails.poster_path}`} alt={getTitle(mediaDetails.name || mediaDetails.title)} />
+                        <img src={`https://image.tmdb.org/t/p/w500/${mediaDetails.poster_path}`} alt={mediaDetails.name || mediaDetails.title} />
                         <div className="movie-details__card-imdb pt-3"> 
                             <span>IMDB:</span> {mediaDetails.vote_average < 1 ? ( 
                                 "Not rated yet"

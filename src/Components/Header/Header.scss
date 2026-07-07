@@ -19,11 +19,9 @@
       }
 
     &__burger-menu {
-        display: flex;
+        display: none;
         align-items: center;
         border: none;
-        padding-left: 20px;
-        display: none;
     }
 
     &__search-bar{
@@ -64,4 +62,22 @@
                 padding-bottom: 0;
             }
         }
+}
+
+@media (max-width: 768px) {
+    .header {
+        justify-content: space-between;
+
+        &__burger-menu {
+            display: flex;
+        }
+
+        &__links-container {
+            display: none;
+        }
+
+        &__search-bar {
+            padding-right: 10px;
+        }
+    }
 }
