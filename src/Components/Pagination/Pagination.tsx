@@ -35,7 +35,11 @@ const Pagination = ({
     };
 
 
-    if (loading) return <div className="text-center py-8">Loading...</div>;
+    if (loading) return (
+        <div className="d-flex justify-content-center py-5">
+            <div className="spinner-border" style={{ color: '#49c8e7' }} role="status" />
+        </div>
+    );
 
     return (
         <>

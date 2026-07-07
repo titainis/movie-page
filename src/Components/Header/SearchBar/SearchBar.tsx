@@ -58,19 +58,23 @@ const SearchBar = ({ isVisible}: {isVisible: boolean}) => {
       {searchResults.length > 0 && (
         <div className="search-results">
           <div className="p-2">
-            <ul className="search-results__list d-flex flex-column gap-3 p-0">
+            <ul className="search-results__list d-flex flex-column gap-1 p-0 m-0">
               {resultsByPopularity.map(item => (
                 <li
-                  className="search-results__list-item d-flex"
+                  className="search-results__list-item d-flex align-items-center"
                   key={item.id}
                   onClick={() => item.media_type === 'movie' ? navigate(`/movies/${item.id}`) : navigate(`/tv-series/${item.id}`)}
                 >
-                  <img
-                    className="search-results__list-item-img"
-                    src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                    alt={item.title || item.name}
-                  />
-                  
+                  {item.poster_path ? (
+                    <img
+                      className="search-results__list-item-img"
+                      src={`https://image.tmdb.org/t/p/w92${item.poster_path}`}
+                      alt={item.title || item.name}
+                    />
+                  ) : (
+                    <div className="search-results__list-item-img search-results__list-item-img--empty">🎬</div>
+                  )}
+
                   <div className="search-results__list-item-info d-flex flex-column">
                     <p className="search-results__list-item-title">{titleCrop((item.title || item.name), 20)}</p>
                     <p>

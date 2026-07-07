@@ -38,14 +38,17 @@ const FavoritesPage = () => {
         </div>
 
         {filteredFavorites.length === 0 ? (
-          <div className="text-center fs-5">
-            <p>No favorites yet</p>
-            <Link to='/movies' className="text-decoration-none text-white">
-              <Button className="rounded px-2">Find Movies To Favorite</Button>
-            </Link>
-            <Link to='/tv-series' className="text-decoration-none text-white">
-              <Button className="rounded px-2">Find TV Series To Favorite</Button>
-            </Link>
+          <div className="text-center pt-4">
+            <p className="fs-4 mb-1">No favorites yet</p>
+            <p className="text-secondary mb-4">Find something to watch and hit Favorite — it will show up here.</p>
+            <div className="d-flex justify-content-center flex-wrap gap-3">
+              <Link to='/movies' className="text-decoration-none">
+                <Button className="btn-accent">Find Movies</Button>
+              </Link>
+              <Link to='/tv-series' className="text-decoration-none">
+                <Button className="btn-accent-outline">Find TV Series</Button>
+              </Link>
+            </div>
           </div> ) :
             (<div className="row">
               {filteredFavorites.map((media) => (

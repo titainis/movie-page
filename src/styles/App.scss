@@ -15,3 +15,33 @@ body {
 .pt-60 {
   padding-top: 60px;
 }
+
+.btn-accent,
+.btn-accent-outline {
+  padding: 8px 25px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.btn-accent {
+  border: none;
+  background-color: $light-blue;
+  color: black;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn-accent-outline {
+  border: 2px solid $light-blue;
+  background-color: transparent;
+  color: white;
+
+  &:hover {
+    color: $light-blue;
+  }
+}

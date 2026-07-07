@@ -26,7 +26,7 @@ const MoviesPage = () => {
 
               <div className="position-fixed bottom-0 pb-3 translate-middle-x start-50">
                 <Link to="/movies/all-movies">
-                  <Button className="border-2 border-primary bg-black text-white px-3 py-1 rounded-4">See All Movies</Button>
+                  <Button className="btn-accent-outline bg-black">See All Movies</Button>
                 </Link>
               </div>
 

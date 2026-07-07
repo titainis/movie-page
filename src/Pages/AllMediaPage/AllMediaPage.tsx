@@ -16,7 +16,7 @@ const AllMediaPage = ({ mediaType }: MediaProps) => {
 
                 <div className="position-fixed bottom-0 pb-3 translate-middle-x start-50">
                 <Link to={mediaType === 'movie' ? '/movies' : '/tv-series'}>
-                  <Button className="border-2 border-primary bg-black opacity-.5 text-white px-3 py-1 rounded-4">{mediaType === 'movie' ? 'See Newest Movies' : "See Newest Series"}</Button>
+                  <Button className="btn-accent-outline bg-black">{mediaType === 'movie' ? 'See Newest Movies' : "See Newest Series"}</Button>
                 </Link>
               </div>
             </section>

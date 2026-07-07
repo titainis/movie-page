@@ -40,25 +40,57 @@
   border-top-right-radius: 10px;
   background-color: #111;
   font-weight: 600;
-  max-height: 500px; 
-  overflow-y: auto;  
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #222;
+  box-shadow: 0 12px 30px rgb(0, 0, 0, 0.6);
 
   &__list {
     list-style-type: none;
 
     &-item {
       cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background-color 0.2s ease-in;
+
+      &:hover {
+        background-color: #222;
+      }
 
       &-info {
-        padding-left: 10px;
+        padding-left: 12px;
+
+        p {
+          margin: 0;
+          font-size: 13px;
+          color: #9aa0a6;
+        }
+
+        .search-results__list-item-title {
+          font-size: 15px;
+          color: white;
+        }
+
+        .search-results__list-item-type {
+          color: $light-blue;
+        }
       }
 
       &-img {
-        width: 50px;
-      }
+        width: 48px;
+        height: 72px;
+        object-fit: cover;
+        border-radius: 6px;
+        flex-shrink: 0;
 
-      &-title {
-        font-size: 16px;
+        &--empty {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #222;
+          font-size: 20px;
+        }
       }
 
       &-type {

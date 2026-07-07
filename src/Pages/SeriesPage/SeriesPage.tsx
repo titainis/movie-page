@@ -26,7 +26,7 @@ const SeriesPage = () => {
 
             <div className="position-fixed bottom-0 pb-3 translate-middle-x start-50">
                 <Link to="/tv-series/all-series">
-                  <Button className="border-2 border-primary bg-black text-white px-3 py-1 rounded-4">See All Series</Button>
+                  <Button className="btn-accent-outline bg-black">See All Series</Button>
                 </Link>
               </div>
           </div>
